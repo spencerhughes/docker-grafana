@@ -21,7 +21,7 @@ USER grafana:grafana
 
 WORKDIR /usr/share/grafana
 
-COPY conf/grafana.ini /etc/grafana/grafana.ini
+COPY grafana.ini /etc/grafana/grafana.ini
 
 VOLUME /etc/grafana
 
