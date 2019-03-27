@@ -22,6 +22,8 @@ RUN echo deb https://packages.grafana.com/oss/deb stable main > /etc/apt/sources
 	chown -R grafana:grafana /etc/grafana/data && \
 	mkdir /etc/grafana/plugins && \
 	chown -R grafana:grafana /etc/grafana/plugins && \
+	mkdir /etc/grafana/logs && \
+	chown -R grafana:grafana /etc/grafana/logs && \
 	apt-get -qq autoremove && \
 	apt-get -qq clean
 
