@@ -21,7 +21,7 @@ RUN echo deb https://packages.grafana.com/oss/deb stable main > /etc/apt/sources
 	mkdir /etc/grafana/data && \
 	apt-get -y -qq autoremove && \
 	apt-get -y -qq clean && \
-	mv /var/lib/grafana/grafana.db /etc/grafana/data/
+	mv /var/lib/grafana/* /etc/grafana/data/
 
 EXPOSE 3000
 
