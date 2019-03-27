@@ -37,4 +37,9 @@ VOLUME /etc/grafana
 
 USER grafana:grafana
 
-CMD ["/usr/sbin/grafana-server","-config","/etc/grafana/grafana.ini"]
+ENV PUID=1000
+ENV PGID=1000
+
+COPY start.sh /
+
+CMD ["/start.sh"]
