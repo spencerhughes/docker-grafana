@@ -15,23 +15,24 @@ RUN apt-get -qq update && \
 
 RUN echo deb https://packages.grafana.com/oss/deb stable main > /etc/apt/sources.list.d/grafana.list && \
 	curl -s https://packages.grafana.com/gpg.key | apt-key add - && \
-	apt-get -y -qq update && \
-	apt-get -y -qq upgrade && \
-	apt-get -y -qq install grafana && \
+	apt-get -qq update && \
+	apt-get -qq upgrade && \
+	apt-get -qq install grafana && \
 	mkdir /etc/grafana/data && \
-	apt-get -y -qq autoremove && \
-	apt-get -y -qq clean
-
-RUN chown -Rv grafana:grafana /etc/grafana
-
-EXPOSE 3000
-
-USER grafana:grafana
-
-WORKDIR /usr/share/grafana
+	chown -R grafana:grafana /etc/grafana/data && \
+	mkdir /etc/grafana/plugins && \
+	chown -R grafana:grafana /etc/grafana/plugins && \
+	apt-get -qq autoremove && \
+	apt-get -qq clean
 
 COPY grafana.ini /etc/grafana/grafana.ini
 
+EXPOSE 3000
+
+WORKDIR /usr/share/grafana
+
 VOLUME /etc/grafana
+
+USER grafana:grafana
 
 CMD ["/usr/sbin/grafana-server","-config","/etc/grafana/grafana.ini"]
