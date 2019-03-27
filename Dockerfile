@@ -35,8 +35,6 @@ WORKDIR /usr/share/grafana
 
 VOLUME /etc/grafana
 
-USER grafana:grafana
-
 ENV PUID=1000
 ENV PGID=1000
 
