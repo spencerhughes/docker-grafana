@@ -20,8 +20,7 @@ RUN echo deb https://packages.grafana.com/oss/deb stable main > /etc/apt/sources
 	apt-get -y -qq install grafana && \
 	mkdir /etc/grafana/data && \
 	apt-get -y -qq autoremove && \
-	apt-get -y -qq clean && \
-	mv /var/lib/grafana/* /etc/grafana/data/
+	apt-get -y -qq clean
 
 EXPOSE 3000
 
@@ -30,6 +29,8 @@ USER grafana:grafana
 WORKDIR /usr/share/grafana
 
 COPY grafana.ini /etc/grafana/grafana.ini
+
+RUN chown -Rv grafana:grafana /etc/grafana
 
 VOLUME /etc/grafana
 
